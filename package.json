@@ -1,0 +1,12 @@
+{
+  "name": "bad_hair_cuts",
+  "version": "1.0.0",
+  "description": "list of bad_hair_cuts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VivanRajMittakodi",
+  "license": "ISC"
+}
