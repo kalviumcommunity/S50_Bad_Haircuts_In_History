@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for port or default to 3000
+const port = process.env.PORT || 3000;
 
 // Define the ping route with the response in JSON
 app.get('/', (req, res) => {
