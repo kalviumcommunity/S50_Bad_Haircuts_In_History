@@ -25,5 +25,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 server running on PORT: ${port}`);
+  console.log(`🚀 server running on the PORT: ${port}`);
 });
