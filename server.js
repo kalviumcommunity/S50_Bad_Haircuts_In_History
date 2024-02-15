@@ -1,30 +1,34 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for port or default to 3000
+const port = 3000;
+const DataBase = require("./config/database");
+const routes = require('./Routes/route'); // Import the routes
 
-// Define the ping route with the response in JSON
-app.get('/', (req, res) => {
-  res.json({ name: 'Vivan Raj Mittakodi' });
-});
+// Make sure to use async keyword for the callback function
+DataBase();
+
+app.use(express.json());
+
+// Mount the routes
+app.use('/', routes);
 
 // Error handling middleware for unhandled routes
-app.use((req, res, next) => {
-  const error = new Error('Not Found');
-  error.status = 404;
-  next(error);
-});
+// app.use((req, res, next) => {
+//   const error = new Error('Not Found');
+//   error.status = 404;
+//   next(error);
+// });
 
-// Error handling middleware for server errors
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({
-    error: {
-      message: err.message,
-    },
-  });
-});
+// // Error handling middleware for server errors
+// app.use((err, req, res, next) => {
+//   res.status(err.status || 500);
+//   res.json({
+//     error: {
+//       message: err.message,
+//     },
+//   });
+// });
 
 app.listen(port, () => {
   console.log(`🚀 server running on PORT: ${port}`);
 });
-
