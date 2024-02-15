@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const DataBase = require("./config/database");
+const routes = require('./Routes/route'); 
 
-// Define the ping route with the response in JSON
-app.get('/', (req, res) => {
-  res.json({ name: 'Vivan Raj Mittakodi' });
-});
+DataBase();
+
+app.use(express.json());
+
+app.use('/', routes);
 
 // Error handling middleware for unhandled routes
 app.use((req, res, next) => {
@@ -25,5 +29,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 server running on the PORT: ${port}`);
+  console.log(`🚀 server running on PORT: ${port}`);
 });
