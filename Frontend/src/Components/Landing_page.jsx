@@ -52,8 +52,8 @@ const useFormValidation = () => {
     // Password validation
     if (!formValues.password) {
       errors.password = "Please enter your Password";
-    } else if (!/^.{8,}$/.test(formValues.password)) {
-      errors.password = "Invalid password. Must be at least 8 characters.";
+    } else if (!/^.{8,20}$/.test(formValues.password)) {
+      errors.password = "Invalid password. Must be between 8 and 20 characters.";
     } else {
       errors.password = "";
     }
@@ -117,7 +117,7 @@ function App() {
             id="password"
             name="password"
             placeholder="Please enter your Password"
-            maxLength="10"
+            maxLength="20"
             value={formValues.password}
             onChange={handleChange}
           />
