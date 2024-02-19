@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import "./Landing.css";
 
-function App() {
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+// Custom hook for form validation
+const useFormValidation = () => {
   const [formValues, setFormValues] = useState({
     fname: "",
     lname: "",
     email: "",
-    password: "", 
+    password: "",
   });
+
   const [formErrors, setFormErrors] = useState({
     fname: "",
     lname: "",
     email: "",
-    password: "", 
+    password: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const validateForm = () => {
     let errors = {};
 
     // First Name validation
@@ -50,19 +58,23 @@ function App() {
       errors.password = "";
     }
 
-
     setFormErrors(errors);
-    if (Object.values(errors).every((err) => err === "")) {
-      setRegistrationSuccess(true);
-    }
+    return Object.values(errors).every((err) => err === "");
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
+  return { formValues, formErrors, handleChange, validateForm };
+};
+
+function App() {
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const { formValues, formErrors, handleChange, validateForm } = useFormValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      setRegistrationSuccess(true);
+    }
   };
 
   const closePopup = () => {
@@ -101,9 +113,9 @@ function App() {
           />
           <span className="error">{formErrors.email}</span>
           <input
-            type="password" 
-            id="password" 
-            name="password" 
+            type="password"
+            id="password"
+            name="password"
             placeholder="Please enter your Password"
             maxLength="10"
             value={formValues.password}
