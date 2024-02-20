@@ -1,0 +1,26 @@
+.main_container {
+    display:flex;
+  }
+  
+  .side_nav_container {
+    grid-area: side_nav_container;
+    /* background-color: blue; */
+    text-align: center;
+    height:7vh
+  }
+  
+  .nav_container {
+    grid-area: nav_container;
+    /* background-color: green; */
+    text-align: center;
+    width:15%;
+    height:100vh
+  }
+  
+  .main_content_container {
+    grid-area: main_content_container;
+    /* background-color: yellow; */
+    text-align: center;
+    Width:100%;
+  }
+  
