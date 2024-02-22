@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Bad_Hair_cut",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

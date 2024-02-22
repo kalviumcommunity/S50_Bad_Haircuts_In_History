@@ -65,7 +65,7 @@ const useFormValidation = () => {
   return { formValues, formErrors, handleChange, validateForm };
 };
 
-function App() {
+function landing() {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const { formValues, formErrors, handleChange, validateForm } = useFormValidation();
 
@@ -139,4 +139,4 @@ function App() {
   );
 }
 
-export default App;
+export default landing;
