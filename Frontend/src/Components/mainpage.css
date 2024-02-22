@@ -14,7 +14,7 @@
   }
   .side_nav_container, .nav_container {
     position: fixed;
-    z-index: 100; /* Set a higher z-index to ensure it appears above the content */
+    z-index: 100; 
   }
   .side_nav_container {
     top: 8%;
@@ -50,16 +50,13 @@
   border-radius: 20px;
 }
 .search_bar::placeholder {
-  color: #999; /* Adjust placeholder text color */
+  color: #999; 
   font-style: italic; 
   padding-left: 25px;
-  /* Adjust placeholder font style */
-  /* Add any other styles you want for the placeholder */
 }
   
   .main_content_container {
     grid-area: main_content_container;
-    /* background-color: yellow; */
     border: 1px solid black ;
     text-align: center;
     Width:100%;
@@ -75,12 +72,12 @@
   }
   .btn {
     font-style: italic; 
-    margin-right: 20px; /* Adjusted margin for the sign-up button */
-    padding: 8px 16px; /* Add padding for a better button appearance */
-    background-color: #494949; /* Add your desired background color */
-    color: white; /* Set text color to white */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Add border-radius for rounded corners */
+    margin-right: 20px; 
+    padding: 8px 16px; 
+    background-color: #494949;
+    color: white; 
+    border: none; 
+    border-radius: 4px;
     cursor: pointer;
   }
 
@@ -92,28 +89,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease; /* Smooth transition effect */
+  transition: background-color 0.3s ease; 
 }
-
 .com:hover {
-  background-color: #dbdbdb; /* Light gray color on hover */
+  background-color: #dbdbdb; 
 }
 .main_content_container {
   z-index: -10;
   margin-top: 4.3%;
-  /* margin-left: 4.3%; */
   border: 1px solid black;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 1px;
-  margin-left: 15%; /* Adjust margin to make space for the side nav bar */
+  margin-left: 15%; 
   overflow-y: auto; 
 }
 
 .template{
   width: 34vh;
-  /* border: 1px  solid black; */
   height: 46vh;
   background-color: rgb(196, 131, 46);
   border-radius: 20px;
@@ -123,7 +117,7 @@
   height: 46vh;
   border: 3px solid black;
   border-radius: 20px;
-  transition: transform 0.3s, background-color 0.3s; /* Adding transition for a smooth effect */
+  transition: transform 0.3s, background-color 0.3s;
 }
 
 .user_img:hover {
