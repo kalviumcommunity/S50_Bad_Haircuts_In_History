@@ -1,0 +1,42 @@
+.sin{
+background-color: rgb(194, 194, 194);
+width: 90%;
+height: auto;
+margin-left: 15%;
+margin-top: 4.1%;
+}
+.flex{
+    display: flex;
+}
+.container{
+    background-color: rgb(228, 228, 228);
+    width: 59%;
+    margin-left: 25%;
+    margin-top: 3%;
+    border-radius: 20px;
+    height: auto;
+}
+.main_img{
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+}
+.container_2{
+    /* border: 1px solid #000000; */
+    width: auto;
+    height: auto;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+.tittle{
+  margin-bottom: 20px;
+}
+.caption{
+    margin-bottom: 20px;
+  }
+  .like{
+    font-weight: bold;
+    margin-left:30%;
+  }
+  .user_name{
+    font-weight: bold;
+  }
