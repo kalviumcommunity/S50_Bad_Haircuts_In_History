@@ -83,3 +83,11 @@
     font-weight: bold;
     padding: 10px;
   }
+
+  .sign{
+    width: 95%;
+    height: 5vh;
+    background-color: #3c82ce;
+    font-size: 19px;
+    border-radius: 5px;
+  }
