@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import DOMPurify from 'dompurify';  // Import DOMPurify
 import "./Landing.css";
 
 const useFormValidation = () => {
@@ -21,7 +22,7 @@ const useFormValidation = () => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: DOMPurify.sanitize(value),  // Sanitize user input using DOMPurify
     });
   };
 
@@ -66,10 +67,16 @@ function LandingPage() {
 
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:3000/users', formValues);
+        const sanitizedFormValues = {
+          User_Name: DOMPurify.sanitize(formValues.User_Name),
+          Email: DOMPurify.sanitize(formValues.Email),
+          Password: DOMPurify.sanitize(formValues.Password),
+        };
+
+        const response = await axios.post('http://localhost:3000/users', sanitizedFormValues);
 
         if (!response.data.error) {
-          Cookies.set('user_name', formValues.User_Name);
+          Cookies.set('user_name', sanitizedFormValues.User_Name);
 
           navigate("/");
           setRegistrationSuccess(true);
@@ -132,3 +139,4 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
