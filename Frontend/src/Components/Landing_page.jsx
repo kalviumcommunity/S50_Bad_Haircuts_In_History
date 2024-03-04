@@ -1,61 +1,52 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import DOMPurify from 'dompurify';  // Import DOMPurify
 import "./Landing.css";
 
-// Custom hook for form validation
 const useFormValidation = () => {
   const [formValues, setFormValues] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    password: "",
+    User_Name: "",
+    Email: "",
+    Password: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    password: "",
+    User_Name: "",
+    Email: "",
+    Password: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: DOMPurify.sanitize(value),  // Sanitize user input using DOMPurify
     });
   };
 
   const validateForm = () => {
     let errors = {};
 
-    // First Name validation
-    if (!formValues.fname) {
-      errors.fname = "Please enter your First Name";
+    if (!formValues.User_Name) {
+      errors.User_Name = "Please enter a User Name";
     } else {
-      errors.fname = "";
+      errors.User_Name = "";
     }
 
-    // Last Name validation
-    if (!formValues.lname) {
-      errors.lname = "Please enter your Last Name";
+    if (!formValues.Email) {
+      errors.Email = "Please enter an Email";
     } else {
-      errors.lname = "";
+      errors.Email = "";
     }
 
-    // Email validation
-    if (!formValues.email) {
-      errors.email = "Please enter your Email";
+    if (!formValues.Password) {
+      errors.Password = "Please enter a Password";
+    } else if (!/^.{8,20}$/.test(formValues.Password)) {
+      errors.Password = "Invalid password. Must be between 8 and 20 characters.";
     } else {
-      errors.email = "";
-    }
-
-    // Password validation
-    if (!formValues.password) {
-      errors.password = "Please enter your Password";
-    } else if (!/^.{8,20}$/.test(formValues.password)) {
-      errors.password = "Invalid password. Must be between 8 and 20 characters.";
-    } else {
-      errors.password = "";
+      errors.Password = "";
     }
 
     setFormErrors(errors);
@@ -65,20 +56,40 @@ const useFormValidation = () => {
   return { formValues, formErrors, handleChange, validateForm };
 };
 
-function landing() {
+function LandingPage() {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const { formValues, formErrors, handleChange, validateForm } = useFormValidation();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      setRegistrationSuccess(true);
-    }
-  };
+      try {
+        const sanitizedFormValues = {
+          User_Name: DOMPurify.sanitize(formValues.User_Name),
+          Email: DOMPurify.sanitize(formValues.Email),
+          Password: DOMPurify.sanitize(formValues.Password),
+        };
 
-  const closePopup = () => {
-    setRegistrationSuccess(false);
+        const response = await axios.post('http://localhost:3000/users', sanitizedFormValues);
+
+        if (!response.data.error) {
+          Cookies.set('user_name', sanitizedFormValues.User_Name);
+
+          navigate("/");
+          setRegistrationSuccess(true);
+          setPopupVisible(true);
+
+          setTimeout(() => {
+            setPopupVisible(false);
+          }, 3000);
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    }
   };
 
   return (
@@ -87,51 +98,39 @@ function landing() {
         <form action="/submit_form" method="post" onSubmit={handleSubmit}>
           <input
             type="text"
-            id="fname"
-            name="fname"
-            placeholder="Enter your First name"
-            value={formValues.fname}
+            id="User_Name"
+            name="User_Name"
+            placeholder="Enter your User Name"
+            value={formValues.User_Name}
             onChange={handleChange}
           />
-          <span className="error">{formErrors.fname}</span>
-          <input
-            type="text"
-            id="lname"
-            name="lname"
-            placeholder="Enter your Last name"
-            value={formValues.lname}
-            onChange={handleChange}
-          />
-          <span className="error">{formErrors.lname}</span>
+          <span className="error">{formErrors.User_Name}</span>
           <input
             type="email"
-            id="email"
-            name="email"
+            id="Email"
+            name="Email"
             placeholder="Enter your Email"
-            value={formValues.email}
+            value={formValues.Email}
             onChange={handleChange}
           />
-          <span className="error">{formErrors.email}</span>
+          <span className="error">{formErrors.Email}</span>
           <input
             type="password"
-            id="password"
-            name="password"
-            placeholder="Please enter your Password"
+            id="Password"
+            name="Password"
+            placeholder="Enter your Password"
             maxLength="20"
-            value={formValues.password}
+            value={formValues.Password}
             onChange={handleChange}
           />
-          <span className="error">{formErrors.password}</span>
-          <input type="submit" value="Register" />
+          <span className="error">{formErrors.Password}</span>
+          <button className="sign" type="submit" value="Register">Sign</button>
         </form>
       </div>
-      {registrationSuccess && (
+      {popupVisible && (
         <div className="popup">
           <div className="popup-content">
-            <span className="close" onClick={closePopup}>
-              &times;
-            </span>
-            <p>Registration successful!</p>
+            <p>Registration successful! Closing the page...</p>
           </div>
         </div>
       )}
@@ -139,4 +138,5 @@ function landing() {
   );
 }
 
-export default landing;
+export default LandingPage;
+
