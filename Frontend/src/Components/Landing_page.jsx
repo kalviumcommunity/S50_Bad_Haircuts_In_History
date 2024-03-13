@@ -68,9 +68,11 @@ function LandingPage() {
       try {
         const response = await axios.post('http://localhost:3000/users', formValues);
         if (!response.data.error) {
-          Cookies.set('User_Name', formValues.User_Name);
           Cookies.set('token', response.data.token);
-
+             
+          // cookie User_Name
+          Cookies.set('User_Name', formValues.User_Name);
+          
           navigate("/PostArea");
           setRegistrationSuccess(true);
           setPopupVisible(true);
