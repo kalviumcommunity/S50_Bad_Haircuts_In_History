@@ -110,7 +110,7 @@ function Mainpage_info() {
               </div>
               <div>
                 <div className='user_name'>{User_Name}</div>
-                {User_Name === user && ( // Only render buttons if the current user created the post
+                {User_Name === user && ( 
                   <div className='btns_container flex'>
                     <button className='btns btn_1' onClick={handleUpdate}>Update</button>
                     <button className='btns btn_2' onClick={handleDelete}>Delete</button>

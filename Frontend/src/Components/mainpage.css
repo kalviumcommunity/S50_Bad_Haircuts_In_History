@@ -1,6 +1,9 @@
+body{
+  background-color:#EBE3D5;
+}
 .main_container {
     display:flex;
-  }
+}
 
   .side_nav_container {
     display: flex;
@@ -8,11 +11,11 @@
     justify-content: space-between;
     grid-area: side_nav_container;
     text-align: center;
-    border: 1px solid black;
+    border: 3px solid black;
     border-top-right-radius: 20px;
     width: 15%;
     height: 92vh;
-    background-color: #eeeeee;
+    background-color: #F3EEEA;
   }
   .side_nav_container, .nav_container {
     position: fixed;
@@ -35,31 +38,33 @@
 .icon_add{
   margin-left: 10px;
 }
-.sign_btn{
-  margin-left:50vw;
-  /* border: 5px solid black ; */
-}
+
   .nav_container {
     display: flex;
     justify-content: space-between;
+    /* border: 2px solid black; */
     align-items: center;
     grid-area: nav_container;
-    /* border: 1px solid black; */
-    background-color: #eeeeee;
+    background-color: #F3EEEA;
     text-align: center;
     width: 100%;
     height: 8vh;
   }
   .search-bar {
    width: 30vw;
+   text-align: center;
+  
   }
+
 .search_bar{
   width: 25vw;
   height: 4vh;
   border-radius: 20px;
+  font-size: 25px;
+  margin-top: 1vh;
 }
 .search_bar::placeholder {
-  color: #999; 
+  color: #B0A695; 
   font-style: italic; 
   padding-left: 25px;
 }
@@ -78,16 +83,47 @@
     margin-left: 30px;
   }
   .btn {
+    width: 5vw;
     font-style: italic; 
-    margin-right: 20px; 
+    margin-top: 5px; 
     padding: 8px 16px; 
-    background-color: #494949;
+    /* background-color: #494949; */
     color: white; 
     border: none; 
     border-radius: 4px;
     cursor: pointer;
   }
+  .btn-btn{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    width: 13vw;
+    height: 5vh;
+    }
 
+    button {
+      background-color: #B0A695;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #EBE3D5;
+}
+.sign-note{
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  margin-left: 15%;
+}
+h3{
+  text-decoration: underline rgb(236, 236, 236);
+  color: #776B5D;
+}
 .com {
   border-radius: 15px;
   font-size: 18px;
@@ -99,7 +135,7 @@
   transition: background-color 0.3s ease; 
 }
 .com:hover {
-  background-color: #dbdbdb; 
+  background-color: #EBE3D5; 
 }
 .user_img {
   border-radius: 20px;
