@@ -41,31 +41,35 @@ function Mainpage() {
               onChange={handleSearchInputChange}
             />
           </div>
-          <div className='sign_btn'>
-            <Link to="/signup" className='btn'>Sign Up</Link>
+          <div className='btn-btn'>
+          <div >
+            <Link to="/signup" className='btn' >
+            <button className='btn'>Sign-up</button>
+              </Link>
           </div>
           <div>
             {isLoggedIn ? (
               <button className='btn' onClick={handleLogout}>Logout</button>
             ) : (
-              <Link to="/" className='btn'>Login</Link>
+              <Link to="/" className='btn'></Link>
             )}
           </div>
+        </div>
         </div>
 
         <div className='main_container'>
           <div className='side_nav_container'>
             <Link to="/PostArea" className='com'>
               <img src={home_icon} alt="Logo" className='icon'/>
-              <div>Home</div>
+              <div><h3 className='h3'>Home</h3></div>
             </Link>
             <div className='com'>
               <img src={user_icon} alt="" className='icon' />
-              <div>{isLoggedIn ? User_Name : 'Profile'}</div>
+              <div><h3 className='h3'>{isLoggedIn ? User_Name : 'Profile'}</h3></div>
             </div>
             <Link to="/add-new" className='com'>
               <img src={add_icon} alt="" className='icon_add'/>
-              <div>Add New</div>
+              <div><h3 className='h3'>Add New</h3></div>
             </Link>
             <div className='bottom_nav'>
               <div className='com'>Setting</div>

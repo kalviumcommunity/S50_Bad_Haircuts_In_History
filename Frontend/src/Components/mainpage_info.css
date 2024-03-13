@@ -2,9 +2,9 @@ body{
   font-family: 'Arial', sans-serif;
 }
 .sin {
-  background-color: rgb(194, 194, 194);
+  background-color: #F3EEEA;
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
+  background-color: #EBE3D5;
   margin: 0;
   padding: 0;
   display: flex;
@@ -22,7 +22,7 @@ body{
 }
 
 .container {
-  background-color: rgb(228, 228, 228);
+  background-color: #F3EEEA;
   width: 59%;
   margin-left: 25%;
   margin-top: 3%;
@@ -47,9 +47,7 @@ body{
 
 .title {
   margin-bottom: 20px;
-  /* min-width: 20vw; */
-  /* max-width: auto; */
-  background-color: rgb(212, 124, 84);
+  background-color: #EBE3D5;
   height: 5vh;
   font-size: 40px;
   text-align: center;
@@ -61,13 +59,13 @@ body{
 .caption {
   font-style: italic; 
   border: 0px;
-  background-color: rgb(212, 124, 84);
+  background-color: #EBE3D5;
   font-size: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  min-width: 20vw;
+  min-width: auto;
   max-width: auto;
-  height: 5vh;
+  height: 50px;
   text-align: center;
 }
 
@@ -90,8 +88,8 @@ button {
   border-radius: 5px;
 }
 .btn_1{
-  background-color: aqua;
+  background-color: #B0A695;
 }
 .btn_2{
-  background-color: red;
+  background-color: #B0A695;
 }

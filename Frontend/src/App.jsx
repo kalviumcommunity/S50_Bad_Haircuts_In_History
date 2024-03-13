@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import './App.css'
-// import Loginpage from './Components/Landing_page'
-import Firstpage from './Components/mainpage.jsx'
+import React, { useState } from 'react';
+import './App.css';
+import Loginpage from './Components/Landing_page.jsx';
+import Firstpage from './Components/mainpage.jsx';
 
 function App() {
-
   return (
     <>
-    <Firstpage/>    
+      {/* <Loginpage /> */}
+      <Firstpage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
