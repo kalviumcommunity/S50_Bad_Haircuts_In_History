@@ -20,8 +20,8 @@ router.post('/users', async (req, res, next) => {
       return res.status(400).json({ error: error.details[0].message });
     }
 
+        // create a Token 
     const newUser = await usermodel.create(req.body);
-
     const { User_Name,Email,Password } = req.body;
     const token = jwt.sign({ User_Name,Email,Password}, "ghcshucgbehccbygehcvgy", { expiresIn: "10h" });
 
