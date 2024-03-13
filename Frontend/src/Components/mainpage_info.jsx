@@ -1,5 +1,7 @@
+// Mainpage_info.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './mainpage_info.css';
 
 function Mainpage_info() {
@@ -8,6 +10,7 @@ function Mainpage_info() {
   const [editedTitle, setEditedTitle] = useState('');
   const [editedContent, setEditedContent] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const user = Cookies.get('User_Name');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +24,6 @@ function Mainpage_info() {
         console.error('Error fetching data:', error);
       }
     };
-
     fetchData();
   }, [postId]);
 
@@ -80,7 +82,7 @@ function Mainpage_info() {
     return <div>Loading...</div>;
   }
 
-  const { media_url, user_name } = postData;
+  const { media_url, User_Name } = postData;
 
   return (
     <>
@@ -107,11 +109,13 @@ function Mainpage_info() {
                 />
               </div>
               <div>
-                <div className='user_name'>{user_name}</div>
-                <div className='btns_container flex'>
-                  <button className='btns btn_1' onClick={handleUpdate}>Update</button>
-                  <button className='btns btn_2' onClick={handleDelete}>Delete</button>
-                </div>
+                <div className='user_name'>{User_Name}</div>
+                {User_Name === user && ( // Only render buttons if the current user created the post
+                  <div className='btns_container flex'>
+                    <button className='btns btn_1' onClick={handleUpdate}>Update</button>
+                    <button className='btns btn_2' onClick={handleDelete}>Delete</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -122,5 +126,3 @@ function Mainpage_info() {
 }
 
 export default Mainpage_info;
-
-

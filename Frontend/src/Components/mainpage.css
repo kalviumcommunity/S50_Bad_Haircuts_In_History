@@ -103,6 +103,7 @@
 }
 .user_img {
   border-radius: 20px;
+  border: 2px solid black;
 }
 
 .main_content_container {
@@ -120,3 +121,36 @@
   border-radius: 20px;
   margin-bottom: 5px;
 }
+
+
+
+
+/* mainpage.css */
+
+.main_content_container {
+  width: 85%;
+  /* border: 2px solid black; */
+}
+
+.masonry-grid {
+  display: flex;
+  margin-left: -10px; 
+  width: auto;
+}
+
+.masonry-column {
+  padding-left: 10px; 
+  background-clip: padding-box;
+}
+
+.masonry-item {
+  margin-bottom: 10px;
+  overflow: hidden; 
+}
+
+.user_img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
