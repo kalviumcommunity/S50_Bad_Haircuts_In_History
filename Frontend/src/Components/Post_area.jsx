@@ -33,6 +33,8 @@ function PostArea({ searchInput }) {
     return <div>Error: {error}</div>;
   }
 
+  // Adding relations between entities
+  
   const filteredPosts = posts.filter((post) =>
     post.User_Name.toLowerCase().includes(searchInput.toLowerCase())
   );
