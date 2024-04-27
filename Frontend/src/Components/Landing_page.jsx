@@ -67,6 +67,7 @@ function LandingPage() {
     if (validateForm()) {
       try {
         const response = await axios.post('http://localhost:3000/users', formValues);
+          //  token and cookie 
         if (!response.data.error) {
           Cookies.set('token', response.data.token);
              
