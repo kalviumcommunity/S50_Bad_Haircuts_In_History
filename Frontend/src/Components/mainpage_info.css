@@ -1,0 +1,95 @@
+body{
+  font-family: 'Arial', sans-serif;
+}
+.sin {
+  background-color: #F3EEEA;
+  font-family: 'Arial', sans-serif;
+  background-color: #EBE3D5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.full_container {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  background-color: #F3EEEA;
+  width: 59%;
+  margin-left: 25%;
+  margin-top: 3%;
+  border-radius: 20px;
+  height: auto;
+}
+
+.main_img {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  max-width: 100%;
+  height: 60vh;
+}
+
+.container_2 {
+  width: auto;
+  height: auto;
+  margin-left: 30px;
+  margin-top: 20px;
+  flex-grow: 1;
+}
+
+.title {
+  margin-bottom: 20px;
+  background-color: #EBE3D5;
+  height: 5vh;
+  font-size: 40px;
+  text-align: center;
+  border-radius: 10px;
+  border: 0px;
+  font-style: italic; 
+}
+
+.caption {
+  font-style: italic; 
+  border: 0px;
+  background-color: #EBE3D5;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  min-width: auto;
+  max-width: auto;
+  height: 50px;
+  text-align: center;
+}
+
+.user_name {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 20px;
+
+}
+
+button {
+  margin-right: 10px;
+}
+.btns_container {
+  margin-top: 40px;
+}
+.btns{
+  width: 5vw;
+  height: 4vh;
+  border-radius: 5px;
+}
+.btn_1{
+  background-color: #B0A695;
+}
+.btn_2{
+  background-color: #B0A695;
+}
