@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
-import DOMPurify from 'dompurify';  // Import DOMPurify
 import "./Landing.css";
 
 const useFormValidation = () => {
@@ -22,7 +21,7 @@ const useFormValidation = () => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: DOMPurify.sanitize(value),  // Sanitize user input using DOMPurify
+      [name]: value,
     });
   };
 
@@ -67,18 +66,15 @@ function LandingPage() {
 
     if (validateForm()) {
       try {
-        const sanitizedFormValues = {
-          User_Name: DOMPurify.sanitize(formValues.User_Name),
-          Email: DOMPurify.sanitize(formValues.Email),
-          Password: DOMPurify.sanitize(formValues.Password),
-        };
-
-        const response = await axios.post('http://localhost:3000/users', sanitizedFormValues);
-
+        const response = await axios.post('http://localhost:3000/users', formValues);
+          //  token and cookie 
         if (!response.data.error) {
-          Cookies.set('user_name', sanitizedFormValues.User_Name);
-
-          navigate("/");
+          Cookies.set('token', response.data.token);
+             
+          // cookie User_Name
+          Cookies.set('User_Name', formValues.User_Name);
+          
+          navigate("/PostArea");
           setRegistrationSuccess(true);
           setPopupVisible(true);
 
@@ -139,4 +135,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-

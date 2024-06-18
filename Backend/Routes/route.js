@@ -1,20 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const { usermodel } = require("../Model/user");
+const jwt = require("jsonwebtoken");
+const Joi = require('joi');
+const {cookie} = require('cookie');
 
+// validation 
 
-// CREATE - POST request to create a new user
+const userSchema = Joi.object({
+  User_Name: Joi.string().min(3).max(30).required(),
+  Email: Joi.string().email().required(),
+  Password: Joi.string().min(6).required(), 
+});
+
 router.post('/users', async (req, res, next) => {
   try {
+    const { error } = userSchema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+    }
+
+        // create a Token 
     const newUser = await usermodel.create(req.body);
-    res.status(201).json(newUser);
+    const { User_Name,Email,Password } = req.body;
+    const token = jwt.sign({ User_Name,Email,Password}, "ghcshucgbehccbygehcvgy", { expiresIn: "10h" });
+
+
+    res.status(201).json({token});
   } catch (error) {
     console.error(error);
     next(error);
   }
 });
 
-// READ - GET request to get all users
 router.get('/users', async (req, res, next) => {
   try {
     const users = await usermodel.find();
@@ -25,7 +43,7 @@ router.get('/users', async (req, res, next) => {
   }
 });
 
-// READ - GET request to get a specific user by ID
+
 router.get('/users/:id', async (req, res, next) => {
   try {
     const user = await usermodel.findById(req.params.id);
@@ -39,7 +57,6 @@ router.get('/users/:id', async (req, res, next) => {
   }
 });
 
-// UPDATE - PUT request to update a user by ID
 router.put('/users/:id', async (req, res, next) => {
   try {
     const updatedUser = await usermodel.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -53,7 +70,6 @@ router.put('/users/:id', async (req, res, next) => {
   }
 });
 
-// DELETE - DELETE request to delete a user by ID
 router.delete('/users/:id', async (req, res, next) => {
   try {
     const deletedUser = await usermodel.findByIdAndDelete(req.params.id);

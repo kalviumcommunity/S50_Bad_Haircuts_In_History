@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "./AddNewPost.css"
+import "./AddNewPost.css";
 
-function AddNewPost() {
+function AddNewPost({ User_Name }) {
   const [title, setTitle] = useState('');
   const [caption, setCaption] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -15,6 +15,7 @@ function AddNewPost() {
       content: caption,
       media_url: imageUrl,
       extraInput: extraInput,
+      User_Name: User_Name 
     };
 
     try {
@@ -29,6 +30,7 @@ function AddNewPost() {
       if (response.ok) {
         console.log('Post added successfully to the database.');
         resetForm();
+        window.location.href = '/PostArea';
       } else {
         console.error('Error adding post to the database.');
       }
@@ -46,60 +48,57 @@ function AddNewPost() {
 
   return (
     <div className='sin'>
-        <div className='container'>  
-      <h1>Add New Post</h1>
+      <div className='container'>  
+        <h1>Add New Post</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <br />
 
-        <label htmlFor="caption">Caption:</label>
-        <textarea
-          id="caption"
-          name="caption"
-          rows="4"
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-          required
-        ></textarea>
-        <br />
+          <label htmlFor="caption">Caption:</label>
+          <textarea
+            id="caption"
+            name="caption"
+            rows="4"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+            required
+          ></textarea>
+          <br />
 
-        <label htmlFor="imageUrl">Image URL:</label>
-        <input
-          type="url"
-          id="imageUrl"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          required
-        />
-        <br />
-
-        {/* Add an extra input space */}
-        <label htmlFor="extraInput">Extra Input:</label>
-        <input
-          type="text"
-          id="extraInput"
-          name="extraInput"
-          value={extraInput}
-          onChange={(e) => setExtraInput(e.target.value)}
-        />
-        <br />
-
-        <button type="submit">Submit Post</button>
-      </form>
+          <label htmlFor="imageUrl">Image URL:</label>
+          <input
+            type="url"
+            id="imageUrl"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            required
+          />
+          <br />
+          <label htmlFor="extraInput">Extra Input:</label>
+          <input
+            type="text"
+            id="extraInput"
+            name="extraInput"
+            value={extraInput}
+            onChange={(e) => setExtraInput(e.target.value)}
+          />
+          <br />
+        
+          <button type="submit">Submit Post</button>
+        </form>
       </div>
     </div>
   );
 }
 
 export default AddNewPost;
-

@@ -7,59 +7,69 @@ function getRandomSize(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function Post_area() {
+function PostArea({ searchInput }) {
   const [posts, setPosts] = useState([]);
-
-  const breakpointColumnsObj = {
-    default: 5,
-    1100: 3,
-    700: 2,
-    500: 1,
-  };
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:3000/posts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
         const data = await response.json();
         setPosts(data);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setError(error.message);
       }
     };
 
     fetchData();
   }, []);
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const filteredPosts = posts.filter((post) =>
+    post.User_Name.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1,
+  };
+
   return (
-    <>
+    <div className='main_content_container'>
       <Masonry
         breakpointCols={breakpointColumnsObj}
-        className='main_content_container'
-        columnClassName='masonry_column'
+        className='masonry-grid'
+        columnClassName='masonry-column'
       >
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <Link
             key={post._id || post.post_id}
             to={`/post/${post._id || post.post_id}`}
             style={{ textDecoration: 'none' }}
           >
-              <div>
-                <img
-                  className='user_img'
-                  src={post.media_url}
-                  alt={`User ${post._id || post.post_id}`}
-                  style={{ width: '100%', height: `${getRandomSize(20, 50)}vh` }}
-                />
-              </div>
+            <div className='masonry-item'>
+              <img
+                className='user_img'
+                src={post.media_url}
+                alt={`User ${post._id || post.post_id}`}
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
           </Link>
         ))}
       </Masonry>
-    </>
+    </div>
   );
 }
 
-export default Post_area;
-
-
-
+export default PostArea;
