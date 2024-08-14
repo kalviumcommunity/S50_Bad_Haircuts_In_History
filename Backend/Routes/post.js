@@ -24,6 +24,7 @@ router.get('/posts', async (req, res, next) => {
   }
 });
 
+
 // READ - GET request to get a specific post by ID
 router.get('/posts/:id', async (req, res, next) => {
   try {
