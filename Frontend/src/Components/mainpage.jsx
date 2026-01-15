@@ -32,6 +32,8 @@ function Mainpage() {
           <div>
             <img src={Logo} alt="Logo" className='logo' />
           </div>
+
+          {/* search bar */}
           <div className='search-bar'>
             <input
               type="text"
